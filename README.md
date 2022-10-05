@@ -6,20 +6,15 @@ Predicting level of injury based on features of the car crash
 
 ![](./images//media/image1.jpeg)
 
-Our client, a real estate investor, would like to know which properties
-in the greater Seattle area are undervalued. We used property sale data
-from King County (2014 - 2105) to create a regression model capable of
-predicting sale price from a number of home features.
+Our client, an automobile manufacturer, is interested in increasing the safety rating of their upcoming line of new vehicles. They are considering the installation of a device that can detect when a crash has occured and predict whether or not EMS should be called to the scene automatically. Our task is to build a model capable of these predictions using data from the city of Chicago electronic crash reporting system. 
+
 
 ## **Exploratory Data Analysis**
 
-Before any feature selection, we performed a train-test split to ensure
-our model never saw the final testing data and thus avoided unnecessary
-overfitting. Then, for a general sense of the scope of the data, *Figure
-1* is a heatmap of all properties in our training dataset according to
-price and plotted by latitude and longitude:
+We limited our analysis to features of this dataset that could theoretically be known by the proposed sensor device. Examples include weather conditions, time of day, vehicle type, contact area, and seatbelt use. We then binned our target variable - level of injury - into two classes: Accidents where an incapacitating or fatal injury occured and accidents with no serious reported injury. The distribution of our target is shown in *Figure 1*
 
-![](./images//media/image11.png)
+
+![](./images//media/image2.png)
 
 > *Figure 1*
 
