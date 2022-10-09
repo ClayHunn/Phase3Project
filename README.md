@@ -45,6 +45,8 @@ Our second performance metric is false positive rate (FPR)- a measure of how oft
 In order to emulate the status quo we implemented a dummy classifier which defaulted to always predicting the majority class- no injury. This model's confusion matrix is shown in *Figure 2:*
 
 ![](./images//media/image3.png)
+<img src="./images//media/image3.png" alt="" width="50%"/>
+
 
 > *Figure 2*
 
