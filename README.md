@@ -42,19 +42,23 @@ Our second performance metric is false positive rate (FPR)- a measure of how oft
 
 ## **Baseline Model**
 
-Our first model is a dummy classifier that defaults to always predicting the majority class. This model's confusion matrix is shown in *Figure 2:*
+In order to emulate the status quo we implemented a dummy classifier which defaulted to always predicting the majority class- no injury. This model's confusion matrix is shown in *Figure 2:*
 
 ![](./images//media/image3.png)
 
 > *Figure 2*
 
-This model is clearly ineffective --- although it has a low false positive rate, it's recall is also zero which is not useful for our busniess problem.
+This model is clearly ineffective- both the recall and FPR are zero, akin to having no device in the car at all. However, it will serve as a useful measuring stick to judge the improvements of our final model. 
 
 ## **Model Selection**
 
-Figure 3 below shows a table of the various models we tried according to their recall and false positive rates:
+We fit our data to many different models in order to find the most effective solution. *Figure 3* below shows a table of the performance metrics of various models after tuning the relevant hyperparameters:
 
 ![](./images//media/image4.png)
+
+> *Figure 3*
+
+All except the baseline model preformed exceptionally well, and due to the virtual tie between random forest and XGBoost, we used the average fit time benchmark to decide on XGBoost as our final choice. 
 
 ## **Log Scaling**
 
