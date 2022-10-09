@@ -4,7 +4,13 @@ Predicting level of injury based on features of the car crash
 
 ## **Introduction**
 
-![](./images//media/image1.jpeg)
+<p align="center">
+	![](./images//media/image1.jpeg)
+</p>
+
+
+
+TEST
 
 Our client, an automobile manufacturer, is interested in increasing the safety rating of their upcoming line of new vehicles. They are considering the installation of a device that can detect when a crash has occured and predict whether or not EMS should be called to the scene automatically. Our task is to build a model capable of these predictions using data from the city of Chicago electronic crash reporting system. 
 
