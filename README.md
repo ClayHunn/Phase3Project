@@ -60,65 +60,26 @@ We fit our data to many different models in order to find the most effective sol
 
 All except the baseline model preformed exceptionally well, and due to the virtual tie between random forest and XGBoost, we used the average fit time benchmark to decide on XGBoost as our final choice. 
 
-## **Log Scaling**
-
-Upon examination, some features of the dataset appear to be heavily
-skewed. For this reason, we used log-scaling on some target predictors
-to create more normally distributed features. *Figure 5* shows the
-square feet variable before and after log-scaling, and *Figure 6* shows
-the same for our target variable, sale price.
-
-![](./images//media/image3.png)![](./images//media/image1.png)
-
-> *Figure 5*
-
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-
-![](./images//media/image4.png)![](./images//media/image6.png)
-
-> *Figure 6*
-
-## **Polynomial Regression**
-
-We also investigated the effect of adding polynomial terms to the
-regression model as some of the behavior was clearly nonlinear. *Figure
-7* shows our MDAPE vs degree of polynomial, and we conclude that the
-minimum possible error occurs at a degree of 4. Because of this, our
-final model will incorporate a quartic function.
-
-![](./images//media/image2.png)
-
-> *Figure 7*
-
 ## **Final Model**
 
-*Figure 8* contains our final model, including our engineered features,
-log scaling, and polynomic terms. The MDAPE for this model is 11.67% ---
-A major improvement!
+*Figure 4* shows the confusion matrix for our final XGBoost model's performance on our test data set:
 
-​​![](./images//media/image12.png)
-> *Figure 8*
+![](./images//media/image5.png)
 
-## **Testing on Unseen Data**
+> *Figure 4*
 
-Finally, we want to test our model's predictive power against data that
-it has not been exposed to before. *Figure 9* shows our model's
-predictions vs true sale price for the training data (blue) and the
-testing data (red). Our model's MDAPE was comparable on the testing
-data, at 12.63%. This may indicate some minor overfitting which will be
-addressed in future iterations.
+### **Final Recall Score**
 
-![](./images//media/image8.png)
->*Figure 9*
+As you can see, our model only misclassified 1 single person as having no serious injury. This is a recall of 99.9%, meaning a device using this model would be able to automatically dispatch an ambulance for almost everyone who needs one. 
 
-## **Conclusions**
+### **Final FPR**
 
-We were able to improve from a baseline single linear regression model
-MDAPE of \~28% to a final model MDAPE of \~12%. This final model was a
-polynomial regression of degree 4, with engineered features, and
-log-scaling of both predictor and target variables. All of the code to
-generate the figures above can be found in this repository, under
-'Final_Notebook.ipynb'.
+Out of 115,558 people in the test set who were not seriously injured in their accidents, our model misclassified 21.5%. This means around 1 in 5 people who's injuries are not incapacitating will be flagged for potential EMS response. However, we believe this is an acceptable number and our proposed solution in the recommendation section addresses this concern directly. 
+
+
+## **Conclusions & Recommendations**
+
+We find that XGBoost provides the optimal balance between recall and false positive rate. This model also proves that the proposed device would indeed have the neccessary predictive power to warrant it's use in our client's new vehicle line. We recommend moving into the prototyping phase with the added caveat of a secondary alert feature to address any potential false positives. This would likely be a notification that appears on the vehicle's display after detecting an accident which asks if any occupants are seriously injured. To decline an automatic EMS response a customer can simply press the cancel button, but if no response is recieved in a certain predetermined time, an ambulance will be dispatched immediately. With these recommendations, we believe that our client will be able to fully satisfy their original business problem of increasing the safety rating of their new line of vehicles.
+
+All of the code to generate the figures above can be found in this repository, under
+'Final.ipynb'.
