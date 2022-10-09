@@ -11,50 +11,31 @@ Our client, an automobile manufacturer, is interested in increasing the safety r
 
 ## **Exploratory Data Analysis**
 
-We limited our analysis to features of this dataset that could theoretically be known by the proposed sensor device. Examples include weather conditions, time of day, vehicle type, contact area, and seatbelt use. We then binned our target variable - level of injury - into two classes: Accidents where an incapacitating or fatal injury occured and accidents with no serious reported injury. The distribution of our target is shown in *Figure 1*
+We limited our analysis to features of this dataset that could theoretically be known by the proposed sensor device. Examples include weather conditions, time of day, vehicle type, contact area, and seatbelt use. We then binned our target variable - level of injury - into two classes: Accidents where an incapacitating or fatal injury occured and accidents with no serious reported injury. The distribution of our target is shown in *Figure 1*:
 
 
 ![](./images//media/image2.png)
 
 > *Figure 1*
 
-To explore which features may have the highest impact on price, we
-created the correlation matrix *Figure 2*.
+Because of the large imbalance in our target class, we implemented class weight parameters during our modeling steps. The metrics we used to evaluate model performance were recall and false positive rate. Our stakeholder will value a high recall, meaning our model should identify the majority of crashes where a serious injury is likely. They will also value a low false positive rate, meaning our model should be able to distinguish which accidents are minor and reduce the risk of sending EMS when not neccessary.  
 
-![](./images//media/image10.png)
-
-> *Figure 2*
-
-Next is a scatter matrix *Figure 3* of some of the more highly
-correlated features in order to visualize the relationship between
-individual predictors:
-
-![](./images//media/image7.png)
-
-> *Figure 3*
 
 ## **Baseline Model**
 
-Our first model incorporates only square footage of the living space as
-the sole predictor. This model's prediction vs true sale price is
-plotted in *Figure 4:*
+Our first model is a dummy classifier that defaults to always predicting the majority class. This model's confusion matrix is shown in *Figure 2:*
 
-![](./images//media/image5.png)
+![](./images//media/image3.png)
 
-> *Figure 4*
+> *Figure 2*
 
-This model is clearly ineffective --- we chose to use the metric of
-**Median Absolute Percent Error (MDAPE),** which is 28.51% for this
-simple model. However, it will serve as a starting point for
-improvements.
+This model is clearly ineffective --- although it has a low false positive rate, it's recall is also zero which is not useful for our busniess problem.
 
-## **Feature Engineering**
+## **Model Selection**
 
-We added several features to our model that were not included in the
-original dataset, such as median household income of each zip code,
-distance to the downtown Seattle area, and the housing price index --- a
-measure of the general US economic environment during which the house
-was sold.
+Figure 3 below shows a table of the various models we tried according to their recall and false positive rates:
+
+![](./images//media/image4.png)
 
 ## **Log Scaling**
 
